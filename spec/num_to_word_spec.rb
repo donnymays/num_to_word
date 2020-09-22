@@ -30,4 +30,18 @@ describe(Number) do
       expect(numblur.number_to_word()).to(eq("two hundred thirty four"))
     end
   end
+
+  describe("#thousands") do
+    it('returns name of number between 1000 and 9999') do
+      numblur = Number.new(2345)
+      expect(numblur.number_to_word()).to(eq("two thousand three hundred forty five"))
+    end
+  end
+
+  describe("#teen_thousands") do
+    it('returns english name of an integer between 10,000 and 19,999') do
+      numblur = Number.new(14234)
+      expect(numblur.number_to_word()).to(eq("fourteen thousand two hundred thirty four"))
+    end
+  end
 end
