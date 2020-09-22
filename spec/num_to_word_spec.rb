@@ -23,4 +23,11 @@ describe(Number) do
       expect(numblur.number_to_word()).to(eq("thirty four"))
     end
   end
+
+  describe("#hundreds") do
+    it('returns english name of numbers between 100 and 999') do
+      numblur = Number.new(234)
+      expect(numblur.number_to_word()).to(eq("two hundred thirty four"))
+    end
+  end
 end
