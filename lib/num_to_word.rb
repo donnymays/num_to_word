@@ -8,6 +8,7 @@ class Number
     @tens = {2=>"twenty", 3=>"thirty", 4=>"forty", 5=>"fifty", 6=>"sixty", 7=>"seventy", 8=>"eighty", 9=>"ninety"}
     @hundreds = {1=>"one hundred", 2=>"two hundred", 3=>"three hundred", 4=>"four hundred", 5=>"five hundred", 6=>"six hundred", 7=>"seven hundred", 8=>"eight hundred", 9=>"nine hundred"}
     @thousands = {1=>"one thousand", 2=>"two thousand", 3=>"three thousand", 4=>"four thousand", 5=>"five thousand", 6=>"six thousand", 7=>"seven thousand", 8=>"eight thousand", 9=>"nine thousand"}
+    @millions = {1=>"one million", 2=>"two million", 3=>"three million", 4=>"four million", 5=>"five million", 6=>"six million", 7=>"seven million", 8=>"eight million", 9=>"nine million"}
   end
 
   def number
@@ -40,8 +41,8 @@ class Number
   end
 
   def thousands()
-    number_array = @number.to_s.split("") #["2", "3", "4", "5"]
     as_words = []
+    number_array = @number.to_s.split("") 
     as_words.push(@thousands.fetch(number_array[0].to_i))
     as_words.push(@hundreds.fetch(number_array[1].to_i))
     as_words.push(@tens.fetch(number_array[2].to_i))
@@ -50,7 +51,7 @@ class Number
   end
 
   def teen_thousands()
-    number_array = @number.to_s.split("") #["1", "3", "4", "5", "6"]
+    number_array = @number.to_s.split("") 
     as_words = []
     teen_thousand = []
     teen_thousand.push(number_array[0].to_i)
@@ -64,6 +65,22 @@ class Number
     as_words.join(" ")
   end
 
+  def ten_thousands()
+    number_array = @number.to_s.split("") 
+    as_words = []
+    # teen_thousand = []
+    # teen_thousand.push(number_array[0].to_i)
+    # teen_thousand.push(number_array[1].to_i)
+    # teen_thous = teen_thousand.join("").to_i
+    
+    as_words.push(@tens.fetch(number_array[0].to_i))
+    as_words.push(@ones.fetch(number_array[1].to_i))
+    as_words.push("thousand")
+    as_words.push(@hundreds.fetch(number_array[2].to_i))
+    as_words.push(@tens.fetch(number_array[3].to_i))
+    as_words.push(@ones.fetch(number_array[4].to_i))
+    as_words.join(" ")
+  end
 
 
   def number_to_word() 
@@ -79,6 +96,8 @@ class Number
       thousands()
     elsif (@number >= 10000 && @number < 20000)
       teen_thousands()
+    elsif (@number >= 20000 && @number < 99999)
+      ten_thousands()
     end
   end
 end 
