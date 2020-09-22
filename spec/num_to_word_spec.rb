@@ -16,4 +16,11 @@ describe(Number) do
       expect(numblur.number_to_word()).to(eq("fourteen"))
     end
   end
+
+  describe("#twenty_to_ninety") do
+    it('returns english name of a number between 20 and 99') do
+      numblur = Number.new(34)
+      expect(numblur.number_to_word()).to(eq("thirty four"))
+    end
+  end
 end
