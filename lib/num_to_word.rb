@@ -24,19 +24,22 @@ class Number
   end
 
   def twenty_to_ninety()
-    number_array = @number.to_s.split("") #["3", "4"]
+    number_array = @number.to_s.split("")
     as_words = []
     as_words.push(@tens.fetch(number_array[0].to_i))
     as_words.push(@ones.fetch(number_array[1].to_i))
     as_words.join(" ")
   end
-
   def hundreds()
-    number_array = @number.to_s.split("") #[:2", "3", "4"]
+    number_array = @number.to_s.split("") #["3", "0", "0"]
     as_words = []
     as_words.push(@hundreds.fetch(number_array[0].to_i))
-    as_words.push(@tens.fetch(number_array[1].to_i))
-    as_words.push(@ones.fetch(number_array[2].to_i))
+    if (number_array[1].to_i) != 0
+      as_words.push(@tens.fetch(number_array[1].to_i))
+    end
+    if (number_array[2].to_i) != 0
+      as_words.push(@ones.fetch(number_array[2].to_i))
+    end
     as_words.join(" ")
   end
 
@@ -67,12 +70,7 @@ class Number
 
   def ten_thousands()
     number_array = @number.to_s.split("") 
-    as_words = []
-    # teen_thousand = []
-    # teen_thousand.push(number_array[0].to_i)
-    # teen_thousand.push(number_array[1].to_i)
-    # teen_thous = teen_thousand.join("").to_i
-    
+    as_words = []    
     as_words.push(@tens.fetch(number_array[0].to_i))
     as_words.push(@ones.fetch(number_array[1].to_i))
     as_words.push("thousand")
